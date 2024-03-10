@@ -1,5 +1,5 @@
 class IntLinkedListException(Exception):
     """
-    双方向連結リストを表すクラス用の例外クラス。
+    Exception class for IntLinkedList.
     """
     pass
