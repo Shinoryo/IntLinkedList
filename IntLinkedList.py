@@ -35,9 +35,9 @@ class IntLinkedList:
             IntLinkedListException: If the item already exists in this list or if previous_item does not exist in this list.
         """
         if item in self.before.keys():
-            raise IntLinkedListException("{}はこのリストに存在するため、追加できません。".format(item))
+            raise IntLinkedListException("An item {} cannot be added because it exists in this list.".format(item))
         if previous_item not in self.after.keys():
-            raise IntLinkedListException("{}はこのリストに存在しないため、アイテムを追加できません。".format(previous_item))
+            raise IntLinkedListException("An item {} cannot add an item because a previous_item {} does not exist in this list.".format(item, previous_item))
         
         self.before[item] = previous_item
         self.after[item] = self.after[previous_item]
@@ -55,9 +55,9 @@ class IntLinkedList:
             IntLinkedListException: If the item already exists in this list or if next_item does not exist in this list.
         """
         if item in self.after.keys():
-            raise IntLinkedListException("{}はこのリストに存在するため、追加できません。".format(item))
+            raise IntLinkedListException("An item {} cannot be added because it exists in this list.".format(item))
         if next_item not in self.before.keys():
-            raise IntLinkedListException("{}はこのリストに存在しないため、アイテムを追加できません。".format(next_item))
+            raise IntLinkedListException("An item {} cannot add an item because a next_item {} does not exist in this list.".format(item, next_item))
         
         self.after[item] = next_item
         self.before[item] = self.before[next_item]
@@ -74,9 +74,9 @@ class IntLinkedList:
             IntLinkedListException: If Dummy.HEAD or Dummy.TAIL is specified or if item does not exist in this list.
         """
         if item in {self.Dummy.HEAD, self.Dummy.TAIL}:
-            raise IntLinkedListException("{}は削除できません。".format(item))
+            raise IntLinkedListException("{} cannot be removed.".format(item))
         if item not in self.after.keys():
-            raise IntLinkedListException("{}はこのリストに存在しないため、削除できません。".format(item))
+            raise IntLinkedListException("{} cannot be removed because it does not exist in this list.".format(item))
         
         self.after[self.before[item]] = self.after[item]
         self.before[self.after[item]] = self.before[item]
