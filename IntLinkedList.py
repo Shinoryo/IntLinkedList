@@ -8,6 +8,9 @@ class IntLinkedList:
     """
     
     class Dummy(Enum):
+        """
+        先頭と末尾のダミー要素を表す列挙型。
+        """
         HEAD = auto()
         TAIL = auto()
     
