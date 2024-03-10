@@ -1,47 +1,46 @@
-# IntLinkedList
-整数を格納するためのPythonの双方向連結リスト。
+# IntLinkedList Specification
 
-## `IntLinkedList.Dummy` 列挙型
-先頭と末尾のダミー要素を表す列挙型。
+## Overview
+The `IntLinkedList` class provides a doubly-linked list for storing integers.
 
-### メンバー
-- `HEAD`: 先頭のダミー要素
-- `TAIL`: 末尾のダミー要素
+## Enumerations
+### Dummy
+- Enum representing dummy elements at the head and tail.
+#### Values
+- `HEAD`: Represents the dummy element at the head.
+- `TAIL`: Represents the dummy element at the tail.
 
-## `__init__(self) -> None`
-先頭と末尾のダミー要素を持つように初期化する。
+## Class: `IntLinkedList`
+- A doubly-linked list for storing integers.
 
-## `append(self, item: int, previous_item: int = Dummy.HEAD) -> None`
-アイテムをリストに追加する。すでに存在するアイテムを指定してはならない。
+### Methods
+#### `__init__(self) -> None`
+- Initializes the linked list with the first and last dummy elements.
 
-### 引数
-- `item` (int): 追加するアイテム。
-- `previous_item` (int, optional): この後に `item` を追加する。デフォルトは先頭のダミー要素。
+#### `append(self, item: int, previous_item: int = Dummy.HEAD) -> None`
+- Adds an item after a specified previous_item.
+##### Parameters
+- `item (int)`: Item to add.
+- `previous_item (int, optional)`: Add item after this. Defaults to the dummy element at the head.
+##### Raises
+- `IntLinkedListException`: If the item already exists in this list or if previous_item does not exist in this list.
 
-### 例外
-- `IntLinkedListException`: `item`がこのリストに存在する場合、または、`previous_item`がこのリストに存在しない場合。
+#### `append_left(self, item: int, next_item: int = Dummy.TAIL) -> None`
+- Adds an item before a specified next_item.
+##### Parameters
+- `item (int)`: Item to add.
+- `next_item (int, optional)`: Add item before this. Defaults to the dummy element at the tail.
+##### Raises
+- `IntLinkedListException`: If the item already exists in this list or if next_item does not exist in this list.
 
-## `append_left(self, item: int, next_item: int = Dummy.TAIL) -> None`
-アイテムをリストに追加する。
+#### `remove(self, item: int) -> None`
+- Removes a specified item from the list.
+##### Parameters
+- `item (int)`: Item to remove.
+##### Raises
+- `IntLinkedListException`: If Dummy.HEAD or Dummy.TAIL is specified or if item does not exist in this list.
 
-### 引数
-- `item` (int): 追加するアイテム。
-- `next_item` (int, optional): この前にアイテムを追加する。デフォルトは末尾のダミー要素。
-
-### 例外
-- `IntLinkedListException`: `item`がこのリストに存在する場合、または、`next_item`がこのリストに存在しない場合。
-
-## `remove(self, item: int)`
-リストからアイテムを削除する。
-
-### 引数
-- `item` (int): 削除するアイテム。
-
-### 例外
-- `IntLinkedListException`: `Dummy.HEAD` か `Dummy.TAIL` が指定された場合、または、`item` がこのリストに存在しない場合。
-
-## `to_list(self) -> List[int]`
-リストをPythonのリストに変換する。
-
-### 戻り値
-- `List[int]`: リストのアイテムを含むPythonのリスト。
+#### `to_list(self) -> List[int]`
+- Converts the list to a Python list.
+##### Returns
+- `List[int]`: Python list containing items of the list.
