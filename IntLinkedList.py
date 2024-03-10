@@ -33,7 +33,7 @@ class IntLinkedList:
             item (int): 追加するアイテム。
             previous_item (int, optional): この後にitemを追加する。デフォルトは先頭のダミー要素。
         Raises:
-            IntLinkedListException: itemがこのリストに存在する場合。
+            IntLinkedListException: itemがこのリストに存在する場合、または、previous_itemがこのリストに存在しない場合。
         """
         if item in self.before.keys():
             raise IntLinkedListException("{}はこのリストに存在するため、追加できません。".format(item))
@@ -52,6 +52,8 @@ class IntLinkedList:
         Args:
             item (int): 追加するアイテム。
             next_item (int, optional): この前にアイテムを追加する。デフォルトは末尾のダミー要素。
+        Raises:
+            IntLinkedListException: itemがこのリストに存在する場合、または、next_itemがこのリストに存在しない場合。
         """
         if item in self.after.keys():
             raise IntLinkedListException("{}はこのリストに存在するため、追加できません。".format(item))
