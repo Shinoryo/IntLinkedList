@@ -4,19 +4,19 @@ import IntLinkedListException
 
 class IntLinkedList:
     """
-    双方向連結リストを表すクラス。
+    A doubly-linked list for storing integers.
     """
     
     class Dummy(Enum):
         """
-        先頭と末尾のダミー要素を表す列挙型。
+        Enum representing dummy elements at the head and tail.
         """
         HEAD = auto()
         TAIL = auto()
     
     def __init__(self) -> None:
         """
-        先頭と末尾のダミー要素を持つように初期化する。
+        Initialise with the first and last dummy elements.
         """
         self.before = {}
         self.after = {}
@@ -26,14 +26,13 @@ class IntLinkedList:
     
     def append(self, item: int, previous_item: int = Dummy.HEAD) -> None:   
         """
-        アイテムを追加する。
-        すでに存在するアイテムを指定してはならない。
+        Adds an item after a previous_item.
 
         Args:
-            item (int): 追加するアイテム。
-            previous_item (int, optional): この後にitemを追加する。デフォルトは先頭のダミー要素。
+            item (int): Item to add.
+            previous_item (int, optional): Add item after this. Defaults to the dummy element at the head.
         Raises:
-            IntLinkedListException: itemがこのリストに存在する場合、または、previous_itemがこのリストに存在しない場合。
+            IntLinkedListException: If the item already exists in this list or if previous_item does not exist in this list.
         """
         if item in self.before.keys():
             raise IntLinkedListException("{}はこのリストに存在するため、追加できません。".format(item))
@@ -47,13 +46,13 @@ class IntLinkedList:
     
     def append_left(self, item: int, next_item: int = Dummy.TAIL) -> None:
         """
-        アイテムを追加する。
+        Adds an item before a next_item.
 
         Args:
-            item (int): 追加するアイテム。
-            next_item (int, optional): この前にアイテムを追加する。デフォルトは末尾のダミー要素。
+            item (int): Item to add.
+            next_item (int, optional): Add item before this. Defaults to the dummy element at the tail.
         Raises:
-            IntLinkedListException: itemがこのリストに存在する場合、または、next_itemがこのリストに存在しない場合。
+            IntLinkedListException: If the item already exists in this list or if next_item does not exist in this list.
         """
         if item in self.after.keys():
             raise IntLinkedListException("{}はこのリストに存在するため、追加できません。".format(item))
@@ -67,12 +66,12 @@ class IntLinkedList:
     
     def remove(self, item: int):
         """
-        リストからアイテムを削除する。
+        Removes an item from the list.
 
         Args:
-            item (int): 削除するアイテム。
+            item (int): Item to remove.
         Raises:
-            IntLinkedListException: Dummy.HEADかDummy.TAILが指定された場合、または、itemがこのリストに存在しない場合。
+            IntLinkedListException: If Dummy.HEAD or Dummy.TAIL is specified or if item does not exist in this list.
         """
         if item in {self.Dummy.HEAD, self.Dummy.TAIL}:
             raise IntLinkedListException("{}は削除できません。".format(item))
@@ -86,10 +85,10 @@ class IntLinkedList:
     
     def to_list(self) -> List[int]:
         """
-        リストをPythonのリストに変換する。
+        Converts the list to a Python list.
 
         Returns:
-            List[int]: リストのアイテムを含むPythonのリスト。
+            List[int]: Python list containing items of the list.
         """
         data_list = []
         current = self.after[self.Dummy.HEAD]
